@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#1a5c2e;--green-mid:#2e7d4f;--green-light:#e8f5ed;--green-xlight:#f2faf5;
+  --gold:#c79a2b;--gold-light:#fdf6e3;--gold-mid:#e8b84b;
+  --black:#111;--dark:#1c1c1c;--mid:#4a4a4a;--muted:#7a7a7a;--border:#e4e4e0;
+  --white:#fff;--bg:#fafaf8;
+  --sans:'DM Sans',sans-serif;--serif:'Playfair Display',serif;--mono:'DM Mono',monospace;
+  --r:10px;--rx:16px;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--dark);font-size:15px;line-height:1.65;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ─── NAV ─── */
+nav{background:var(--green);position:sticky;top:0;z-index:100;border-bottom:3px solid var(--gold)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;height:64px}
+.logo-block{display:flex;align-items:center;gap:12px;margin-right:auto}
+.logo-flag{width:36px;height:24px;border-radius:3px;overflow:hidden;flex-shrink:0;display:flex;flex-direction:column}
+.flag-b{flex:1;background:#006600}
+.flag-r{flex:1;background:#bb0000}
+.flag-w{flex:1;background:#fff;display:flex;align-items:center;justify-content:center}
+.logo-name{color:#fff;font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:.5px;line-height:1.1}
+.logo-sub{color:var(--gold-mid);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{color:rgba(255,255,255,.82);font-size:13.5px;font-weight:500;padding:8px 13px;border-radius:6px;transition:all .18s;letter-spacing:.2px}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--gold);color:var(--dark)!important;font-weight:600!important;border-radius:7px!important;padding:8px 16px!important;margin-left:8px}
+.nav-cta:hover{background:var(--gold-mid)!important}
+
+/* ─── HERO ─── */
+.hero{background:var(--green);padding:72px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.018) 40px,rgba(255,255,255,.018) 41px);pointer-events:none}
+.hero-accent{position:absolute;right:-60px;top:-60px;width:340px;height:340px;border-radius:50%;border:2px solid rgba(199,154,43,.2);pointer-events:none}
+.hero-accent2{position:absolute;right:20px;top:20px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(199,154,43,.12);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(199,154,43,.18);border:1px solid rgba(199,154,43,.35);color:var(--gold-mid);font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:20px}
+.hero h1{font-family:var(--serif);color:#fff;font-size:48px;line-height:1.12;font-weight:900;margin-bottom:20px}
+.hero h1 em{color:var(--gold-mid);font-style:normal}
+.hero-desc{color:rgba(255,255,255,.78);font-size:16px;line-height:1.7;max-width:500px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--dark);font-weight:600;font-size:14px;padding:12px 24px;border-radius:var(--r);border:none;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{background:var(--gold-mid);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#fff;font-weight:500;font-size:14px;padding:12px 24px;border-radius:var(--r);border:1.5px solid rgba(255,255,255,.3);cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
+.hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--rx);padding:28px;backdrop-filter:blur(8px)}
+.hero-card h3{font-family:var(--serif);color:#fff;font-size:18px;margin-bottom:16px;font-weight:700}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:rgba(255,255,255,.09);border-radius:var(--r);padding:14px 12px;text-align:center}
+.stat-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--gold-mid);line-height:1}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.hero-divider{border:none;border-top:1px solid rgba(255,255,255,.12);margin:20px 0}
+.hero-quote{font-size:12px;color:rgba(255,255,255,.55);font-style:italic;line-height:1.5}
+
+/* ─── PAGE SECTIONS ─── */
+section{display:none}
+section.active{display:block}
+
+/* ─── SECTION COMMON ─── */
+.section-wrap{max-width:1100px;margin:0 auto;padding:64px 24px}
+.section-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:10px}
+.section-title{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--black);line-height:1.18;margin-bottom:14px}
+.section-desc{font-size:15.5px;color:var(--mid);max-width:600px;line-height:1.7;margin-bottom:40px}
+.divider-gold{width:48px;height:4px;background:var(--gold);border-radius:2px;margin:16px 0 36px}
+
+/* ─── HOME CONTENT ─── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px}
+.pillar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:28px 24px;transition:all .22s;cursor:default}
+.pillar-card:hover{box-shadow:0 8px 28px rgba(26,92,46,.1);transform:translateY(-3px);border-color:var(--green-mid)}
+.pillar-icon{width:48px;height:48px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--green)}
+.pillar-icon i{font-size:22px}
+.pillar-card h4{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--black);margin-bottom:8px}
+.pillar-card p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.pillar-tag{display:inline-block;margin-top:12px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--green-mid);background:var(--green-light);padding:3px 10px;border-radius:100px}
+
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);overflow:hidden;transition:all .22s;cursor:pointer}
+.news-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.news-img{height:160px;background:var(--green-light);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.news-img-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;opacity:.18;color:var(--green)}
+.news-cat{position:absolute;top:12px;left:12px;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.news-body{padding:18px}
+.news-date{font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:6px}
+.news-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--black);line-height:1.3;margin-bottom:8px}
+.news-excerpt{font-size:13px;color:var(--muted);line-height:1.6}
+.news-read{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--green-mid)}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text p{margin-bottom:16px;font-size:15px;color:var(--mid);line-height:1.75}
+.mission-box{background:var(--green);border-radius:var(--rx);padding:28px;color:#fff;margin-bottom:20px}
+.mission-box h4{font-family:var(--serif);font-size:20px;margin-bottom:10px;font-weight:700}
+.mission-box p{font-size:14px;opacity:.85;line-height:1.7}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;font-weight:700;color:var(--green);flex-shrink:0}
+.team-name{font-weight:600;font-size:14px;color:var(--black)}
+.team-role{font-size:12px;color:var(--muted)}
+
+/* ─── BLOG / JOURNAL ─── */
+.blog-layout{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start}
+.blog-main{display:flex;flex-direction:column;gap:28px}
+.blog-featured{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);overflow:hidden;cursor:pointer;transition:all .22s}
+.blog-featured:hover{box-shadow:0 10px 32px rgba(0,0,0,.09);transform:translateY(-2px)}
+.blog-featured-img{height:220px;background:var(--green);position:relative;display:flex;align-items:center;justify-content:center}
+.blog-featured-img-inner{font-size:64px;opacity:.15;color:#fff}
+.blog-featured-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.blog-featured-body{padding:24px}
+.blog-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--muted);margin-bottom:10px}
+.blog-meta span{display:flex;align-items:center;gap:5px}
+.blog-featured-body h3{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--black);line-height:1.3;margin-bottom:10px}
+.blog-featured-body p{font-size:14px;color:var(--mid);line-height:1.7}
+.blog-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tag{display:inline-block;font-size:11px;font-weight:500;background:var(--green-light);color:var(--green-mid);padding:3px 10px;border-radius:100px}
+.blog-list{display:flex;flex-direction:column;gap:16px}
+.blog-row{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:60px 1fr;gap:16px;cursor:pointer;transition:all .2s}
+.blog-row:hover{border-color:var(--green-mid);box-shadow:0 4px 16px rgba(26,92,46,.07)}
+.blog-row-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--border);line-height:1}
+.blog-row-cat{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:4px}
+.blog-row h4{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--black);margin-bottom:4px;line-height:1.35}
+.blog-row p{font-size:13px;color:var(--muted)}
+.blog-row-date{font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:6px}
+.sidebar-box{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:22px;margin-bottom:20px}
+.sidebar-box h4{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--black);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.topic-pills{display:flex;flex-wrap:wrap;gap:8px}
+.topic-pill{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--mid);padding:5px 12px;border-radius:100px;cursor:pointer;transition:all .15s}
+.topic-pill:hover{background:var(--green-light);border-color:var(--green-mid);color:var(--green)}
+.recent-list{display:flex;flex-direction:column;gap:10px}
+.recent-item{display:flex;gap:10px;cursor:pointer;padding:8px;border-radius:var(--r);transition:all .15s}
+.recent-item:hover{background:var(--bg)}
+.recent-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px}
+.recent-item-title{font-size:13px;font-weight:500;color:var(--dark);line-height:1.4}
+.recent-item-date{font-size:11px;color:var(--muted);font-family:var(--mono)}
+
+/* ─── JOURNAL ─── */
+.journal-header{background:var(--green);border-radius:var(--rx);padding:32px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden}
+.journal-header::after{content:'JOURNAL';position:absolute;right:24px;bottom:-12px;font-family:var(--serif);font-size:80px;font-weight:900;color:rgba(255,255,255,.06);letter-spacing:4px}
+.journal-header h2{font-family:var(--serif);font-size:28px;font-weight:900;margin-bottom:8px}
+.journal-header p{opacity:.78;font-size:14.5px;max-width:500px;line-height:1.65}
+.journal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.journal-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:24px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.journal-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--green)}
+.journal-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.journal-type{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.journal-type i{font-size:14px;color:var(--green-mid)}
+.journal-card h4{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--black);line-height:1.35;margin-bottom:8px}
+.journal-card p{font-size:13px;color:var(--muted);line-height:1.65}
+.journal-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.journal-author{font-size:12px;color:var(--mid);display:flex;align-items:center;gap:6px}
+.journal-pages{font-size:11px;color:var(--muted);font-family:var(--mono)}
+
+/* ─── EVENTS ─── */
+.events-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.event-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:24px;display:flex;gap:20px;transition:all .22s;cursor:pointer}
+.event-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:var(--green-mid)}
+.event-date-box{text-align:center;flex-shrink:0;width:56px}
+.event-day{font-family:var(--serif);font-size:32px;font-weight:900;color:var(--green);line-height:1}
+.event-month{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.event-year{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.event-line{width:1px;background:var(--border);flex-shrink:0}
+.event-body{}
+.event-type{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.event-body h4{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--black);margin-bottom:6px;line-height:1.35}
+.event-body p{font-size:13px;color:var(--muted);margin-bottom:8px}
+.event-loc{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--mid)}
+.event-loc i{font-size:14px;color:var(--green-mid)}
+
+/* ─── MEMBERSHIP ─── */
+.membership-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px}
+.steps{display:flex;flex-direction:column;gap:18px;margin-bottom:36px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.step-body h5{font-weight:600;font-size:14.5px;color:var(--black);margin-bottom:3px}
+.step-body p{font-size:13px;color:var(--muted)}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:32px}
+.form-card h3{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--black);margin-bottom:6px}
+.form-card p{font-size:13.5px;color:var(--muted);margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12.5px;font-weight:600;color:var(--dark);margin-bottom:6px;letter-spacing:.3px}
+.form-control{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--dark);background:#fff;transition:border-color .15s;outline:none}
+.form-control:focus{border-color:var(--green-mid)}
+select.form-control{cursor:pointer}
+.form-submit{width:100%;background:var(--green);color:#fff;border:none;padding:13px;border-radius:var(--r);font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;transition:all .18s;margin-top:6px}
+.form-submit:hover{background:var(--green-mid);transform:translateY(-1px)}
+.benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.benefit-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.benefit-icon{color:var(--green);font-size:18px;flex-shrink:0;margin-top:2px}
+.benefit-item h5{font-size:13.5px;font-weight:600;color:var(--black);margin-bottom:2px}
+.benefit-item p{font-size:12px;color:var(--muted)}
+
+/* ─── RESOURCES ─── */
+.resources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.resource-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rx);padding:24px;cursor:pointer;transition:all .22s;text-align:center}
+.resource-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-3px);border-color:var(--green-mid)}
+.resource-icon{width:60px;height:60px;border-radius:16px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--green)}
+.resource-icon i{font-size:26px}
+.resource-card h4{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px}
+.resource-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.resource-count{display:inline-block;margin-top:14px;background:var(--green-light);color:var(--green-mid);font-size:11px;font-weight:600;padding:3px 12px;border-radius:100px}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-info p{font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:24px}
+.contact-items{display:flex;flex-direction:column;gap:14px}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.contact-item-icon{width:40px;height:40px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0}
+.contact-item-icon i{font-size:18px}
+.contact-item h5{font-weight:600;font-size:14px;color:var(--black);margin-bottom:2px}
+.contact-item p{font-size:13px;color:var(--muted)}
+.social-row{display:flex;gap:12px;margin-top:24px}
+.social-btn{width:42px;height:42px;border-radius:var(--r);background:var(--green-light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:18px;cursor:pointer;transition:all .15s}
+.social-btn:hover{background:var(--green);color:#fff}
+
+/* ─── FOOTER ─── */
+footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 28px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-family:var(--serif);color:#fff;font-size:20px;margin-bottom:6px}
+.footer-brand p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5);max-width:220px}
+.footer-brand .gold-line{width:36px;height:3px;background:var(--gold);border-radius:2px;margin:14px 0}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.6);transition:color .15s;cursor:pointer}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35)}
+.footer-bottom a{color:rgba(199,154,43,.7);font-size:12px}
+.kenya-badge{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.35)}
+
+/* ─── ACTIVE STATES ─── */
+.page{display:none}
+.page.active{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo-block">
+      <div class="logo-flag">
+        <div class="flag-b"></div>
+        <div class="flag-r"></div>
+        <div class="flag-b"></div>
+      </div>
+      <div>
+        <div class="logo-name">ICOYACA Kenya</div>
+        <div class="logo-sub">AfCFTA Youth Advisory</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="active" onclick="showPage('home',this)">Home</a>
+      <a href="#" onclick="showPage('about',this)">About</a>
+      <a href="#" onclick="showPage('blog',this)">Blog</a>
+      <a href="#" onclick="showPage('journal',this)">Journal</a>
+      <a href="#" onclick="showPage('events',this)">Events</a>
+      <a href="#" onclick="showPage('resources',this)">Resources</a>
+      <a href="#" onclick="showPage('contact',this)">Contact</a>
+      <a href="#" class="nav-cta" onclick="showPage('join',this)">Join Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-accent"></div>
+    <div class="hero-accent2"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag"><i class="ti ti-map-pin" aria-hidden="true"></i>Kenya Chapter &nbsp;·&nbsp; Nairobi</div>
+        <h1>Trade is <em>youth</em>.<br>Africa is <em>open.</em></h1>
+        <p class="hero-desc">ICOYACA Kenya is the country chapter of the Independent Continental Youth Advisory Council on AfCFTA — mobilising young Kenyans to engage, shape, and lead Africa's trade future.</p>
+        <div class="hero-btns">
+          <button class="btn-gold" onclick="showPage('join',document.querySelector('.nav-links a:last-child'))"><i class="ti ti-user-plus" aria-hidden="true"></i>Become a Member</button>
+          <button class="btn-ghost" onclick="showPage('about',document.querySelectorAll('.nav-links a')[1])"><i class="ti ti-info-circle" aria-hidden="true"></i>Our Story</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Kenya Chapter Impact</h3>
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-num">1,200+</div><div class="stat-lbl">Members</div></div>
+          <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Counties Active</div></div>
+          <div class="stat-box"><div class="stat-num">18</div><div class="stat-lbl">Events Held</div></div>
+          <div class="stat-box"><div class="stat-num">47</div><div class="stat-lbl">Youth Traders</div></div>
+        </div>
+        <hr class="hero-divider">
+        <p class="hero-quote">"Young Kenyans must scrutinize their opportunities in the AfCFTA and see what is in it for them." — AfCFTA Secretariat, 2022</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-label">What We Stand For</div>
+    <div class="section-title">Five Pillars of Engagement</div>
+    <div class="divider-gold"></div>
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+        <h4>Business Efficiency</h4>
+        <p>Helping young Kenyan traders understand and leverage AfCFTA rules, HS codes, and tariff schedules to grow competitive businesses.</p>
+        <span class="pillar-tag">Trade Tools</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-woman" aria-hidden="true"></i></div>
+        <h4>Gender Empowerment</h4>
+        <p>Amplifying women's voices in trade policy and creating pathways for women-led enterprises to access continental markets.</p>
+        <span class="pillar-tag">Inclusion</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+        <h4>Youth & Innovation</h4>
+        <p>Connecting Kenyan agritech, fintech and creative economy youth to the AfCFTA digital trade and e-commerce protocols.</p>
+        <span class="pillar-tag">Innovation</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <h4>Climate Resilience</h4>
+        <p>Integrating climate-smart trade strategies for Kenya's youth in agriculture, green manufacturing, and sustainable export value chains.</p>
+        <span class="pillar-tag">Sustainability</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+        <h4>Access to Finance</h4>
+        <p>Facilitating connections between youth-led enterprises and PAPSS, trade finance instruments, and AfCFTA-aligned lending programmes.</p>
+        <span class="pillar-tag">Finance</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
+        <h4>Policy Advocacy</h4>
+        <p>Engaging Kenya's trade negotiators, KEPHIS, KEBS, and the State Department for Trade on youth-inclusive policy implementation.</p>
+        <span class="pillar-tag">Policy</span>
+      </div>
+    </div>
+
+    <div class="section-label">Latest from Kenya</div>
+    <div class="section-title">News & Highlights</div>
+    <div class="divider-gold"></div>
+    <div class="news-grid">
+      <div class="news-card" onclick="showPage('blog',document.querySelectorAll('.nav-links a')[2])">
+        <div class="news-img"><div class="news-img-bg"><i class="ti ti-world" aria-hidden="true"></i></div><span class="news-cat">Policy</span></div>
+        <div class="news-body">
+          <div class="news-date">May 2026</div>
+          <div class="news-title">Kenya Chapter Attends AfCFTA Mutual Recognition Workshop in Nairobi</div>
+          <div class="news-excerpt">ICOYACA Kenya participated in the landmark MRA workshop hosted at KICC, advocating for youth SME inclusion in standards harmonisation.</div>
+          <div class="news-read"><i class="ti ti-arrow-right" aria-hidden="true"></i>Read more</div>
+        </div>
+      </div>
+      <div class="news-card" onclick="showPage('blog',document.querySelectorAll('.nav-links a')[2])">
+        <div class="news-img" style="background:#fdf6e3"><div class="news-img-bg" style="color:var(--gold)"><i class="ti ti-users" aria-hidden="true"></i></div><span class="news-cat">Community</span></div>
+        <div class="news-body">
+          <div class="news-date">April 2026</div>
+          <div class="news-title">Youth Trade Bootcamp: 80 Young Exporters Trained in Mombasa</div>
+          <div class="news-excerpt">A three-day intensive bootcamp equipped Coastal Kenya youth with export documentation, rules of origin, and PAPSS digital payments skills.</div>
+          <div class="news-read"><i class="ti ti-arrow-right" aria-hidden="true"></i>Read more</div>
+        </div>
+      </div>
+      <div class="news-card" onclick="showPage('journal',document.querySelectorAll('.nav-links a')[3])">
+        <div class="news-img" style="background:var(--green-light)"><div class="news-img-bg"><i class="ti ti-file-text" aria-hidden="true"></i></div><span class="news-cat">Journal</span></div>
+        <div class="news-body">
+          <div class="news-date">March 2026</div>
+          <div class="news-title">New Research: Kenya's Horticulture Sector & AfCFTA Rules of Origin</div>
+          <div class="news-excerpt">ICOYACA Kenya's research directorate releases a policy brief on how rules of origin affect Kenya's fresh produce exports to EAC markets.</div>
+          <div class="news-read"><i class="ti ti-arrow-right" aria-hidden="true"></i>Read more</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div id="page-about" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Who We Are</div>
+    <div class="section-title">About ICOYACA Kenya</div>
+    <div class="divider-gold"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>ICOYACA Kenya is the Kenya Country Chapter of the Independent Continental Youth Advisory Council on AfCFTA (ICOYACA), an independent body affiliated to YouLead Africa. We were established to ensure that Kenya's young people are meaningfully represented in, and benefit from, the implementation of the African Continental Free Trade Area.</p>
+        <p>Kenya is both a gateway economy for East and Central Africa and one of the continent's most dynamic entrepreneurial ecosystems. Yet the voices of young Kenyan traders, entrepreneurs, and policy advocates are often absent from the corridors where trade rules are made and implemented.</p>
+        <p>ICOYACA Kenya changes that. We mobilise young Kenyans — from Nairobi's tech corridors to Mombasa's port economy, from Kisumu's lake-basin traders to Eldoret's agribusiness youth — to engage with AfCFTA implementation, build trade capacity, and shape Kenya's continental trade agenda.</p>
+        <div class="mission-box">
+          <h4>Our Mission</h4>
+          <p>To empower Kenya's youth to meaningfully engage in and benefit from AfCFTA implementation through advocacy, capacity building, research, and bottom-up mobilisation — ensuring that trade integration works for every young Kenyan.</p>
+        </div>
+        <p>We are guided by the continental ICOYACA framework, aligned to Kenya's national trade and development priorities, and accountable to the young Kenyans we serve.</p>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:10px">Kenya Chapter Leadership</div>
+        <div class="team-grid">
+          <div class="team-card"><div class="avatar">CK</div><div><div class="team-name">Chapter Chairperson</div><div class="team-role">Kenya Chapter Lead</div></div></div>
+          <div class="team-card"><div class="avatar">VL</div><div><div class="team-name">Vice Chairperson</div><div class="team-role">Programming</div></div></div>
+          <div class="team-card"><div class="avatar">SG</div><div><div class="team-name">Secretary General</div><div class="team-role">Operations</div></div></div>
+          <div class="team-card"><div class="avatar">FD</div><div><div class="team-name">Finance Director</div><div class="team-role">Finance & Admin</div></div></div>
+          <div class="team-card"><div class="avatar">PL</div><div><div class="team-name">Policy Lead</div><div class="team-role">Research & Advocacy</div></div></div>
+          <div class="team-card"><div class="avatar">CO</div><div><div class="team-name">Comms Officer</div><div class="team-role">Communications</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BLOG ═══ -->
+<div id="page-blog" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Ideas & Stories</div>
+    <div class="section-title">Blog</div>
+    <div class="divider-gold"></div>
+    <div class="blog-layout">
+      <div>
+        <div class="blog-featured">
+          <div class="blog-featured-img"><div class="blog-featured-img-inner"><i class="ti ti-world" aria-hidden="true"></i></div><span class="blog-featured-badge">Featured</span></div>
+          <div class="blog-featured-body">
+            <div class="blog-meta"><span><i class="ti ti-calendar" aria-hidden="true"></i>May 22, 2026</span><span><i class="ti ti-user" aria-hidden="true"></i>ICOYACA Kenya Team</span><span><i class="ti ti-clock" aria-hidden="true"></i>6 min read</span></div>
+            <h3>How Kenya's Youth Can Win Big from the AfCFTA Guided Trade Initiative</h3>
+            <p>The Guided Trade Initiative (GTI) is no longer a pilot experiment — it is a live commercial corridor. For young Kenyan exporters in horticulture, leather goods, and agro-processing, the GTI represents the first real opportunity to trade across African borders with reduced paperwork, harmonised standards, and preferential tariffs.</p>
+            <div class="blog-tags"><span class="tag">AfCFTA</span><span class="tag">GTI</span><span class="tag">Youth Trade</span><span class="tag">Kenya</span></div>
+          </div>
+        </div>
+        <div style="height:24px"></div>
+        <div class="blog-list">
+          <div class="blog-row"><div class="blog-row-num">01</div><div><div class="blog-row-cat">Women in Trade</div><h4>Women-Led SMEs and the AfCFTA Protocol on Women and Youth in Trade</h4><p>What the proposed protocol means for Kenya's market women, agripreneurs, and creative economy entrepreneurs.</p><div class="blog-row-date">Apr 2026</div></div></div>
+          <div class="blog-row"><div class="blog-row-num">02</div><div><div class="blog-row-cat">Digital Trade</div><h4>AI and the Kenyan MSME: Navigating Global Trade in 2026</h4><p>How artificial intelligence tools are helping small Kenyan businesses comply with export regulations, forecast demand, and manage cross-border payments.</p><div class="blog-row-date">Mar 2026</div></div></div>
+          <div class="blog-row"><div class="blog-row-num">03</div><div><div class="blog-row-cat">Policy Watch</div><h4>MC14 in Yaoundé: What Young Kenyans Need to Know About WTO Rules</h4><p>A plain-language explainer on the 14th WTO Ministerial Conference and its implications for Kenya's EAC and AfCFTA commitments.</div><div class="blog-row-date">Mar 2026</div></div></div>
+          <div class="blog-row"><div class="blog-row-num">04</div><div><div class="blog-row-cat">Climate & Trade</div><h4>Kenya's Horticulture Exporters and the EU Carbon Border Adjustment Mechanism</h4><p>What CBAM means for Kenya's flower, vegetable, and fruit exporters — and how youth agribusinesses can prepare for 2026 compliance deadlines.</p><div class="blog-row-date">Feb 2026</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sidebar-box">
+          <h4>Browse by Topic</h4>
+          <div class="topic-pills">
+            <span class="topic-pill">AfCFTA</span><span class="topic-pill">Youth Trade</span><span class="topic-pill">Digital Trade</span><span class="topic-pill">Gender</span><span class="topic-pill">Climate</span><span class="topic-pill">Finance</span><span class="topic-pill">Policy</span><span class="topic-pill">EAC</span><span class="topic-pill">COMESA</span><span class="topic-pill">Agriculture</span><span class="topic-pill">SMEs</span>
+          </div>
+        </div>
+        <div class="sidebar-box">
+          <h4>Recent Posts</h4>
+          <div class="recent-list">
+            <div class="recent-item"><div class="recent-dot"></div><div><div class="recent-item-title">ICOYACA Launches Young Experts Network</div><div class="recent-item-date">May 2026</div></div></div>
+            <div class="recent-item"><div class="recent-dot"></div><div><div class="recent-item-title">AfCFTA Digital Trade Forum 2025 — Lusaka Recap</div><div class="recent-item-date">May 2025</div></div></div>
+            <div class="recent-item"><div class="recent-dot"></div><div><div class="recent-item-title">Women at the Centre: WTO-ITC High Level Event</div><div class="recent-item-date">Mar 2026</div></div></div>
+            <div class="recent-item"><div class="recent-dot"></div><div><div class="recent-item-title">Uganda's AfCFTA Journey: Framework to Implementation</div><div class="recent-item-date">Mar 2026</div></div></div>
+          </div>
+        </div>
+        <div class="sidebar-box" style="background:var(--green);border-color:var(--green)">
+          <h4 style="color:#fff;border-color:rgba(255,255,255,.2)">Write for Us</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:14px">Are you a young Kenyan with insights on trade, policy, or entrepreneurship? Submit a blog post to the Kenya chapter.</p>
+          <button class="btn-gold" style="width:100%;justify-content:center" onclick="showPage('contact',document.querySelectorAll('.nav-links a')[6])"><i class="ti ti-send" aria-hidden="true"></i>Submit an Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ JOURNAL ═══ -->
+<div id="page-journal" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Research & Analysis</div>
+    <div class="section-title">ICOYACA Kenya Journal</div>
+    <div class="divider-gold"></div>
+    <div class="journal-header">
+      <h2>Kenya Trade & Integration Review</h2>
+      <p>Peer-reviewed research, policy briefs, and analytical papers produced by ICOYACA Kenya's Research Directorate and Young Experts Network on AfCFTA implementation in Kenya and East Africa.</p>
+    </div>
+    <div class="journal-grid">
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-file-analytics" aria-hidden="true"></i>Policy Brief</div>
+        <h4>Rules of Origin and Kenya's Horticulture Export Competitiveness under AfCFTA</h4>
+        <p>Examines how substantial transformation rules affect fresh produce, cut flowers, and processed food exporters in the Naivasha and Mt. Kenya corridors.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-user" aria-hidden="true"></i>ICOYACA Kenya Research</div><div class="journal-pages">14 pages · Mar 2026</div></div>
+      </div>
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-chart-bar" aria-hidden="true"></i>Research Paper</div>
+        <h4>Youth Participation in Kenya's EAC Trade Integration: Gaps, Barriers, and Opportunities</h4>
+        <p>A mixed-methods study of 400 youth traders across Nairobi, Mombasa, Kisumu, and Nakuru measuring AfCFTA awareness, export readiness, and institutional barriers.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-user" aria-hidden="true"></i>Kenya Chapter Team</div><div class="journal-pages">28 pages · Jan 2026</div></div>
+      </div>
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-writing" aria-hidden="true"></i>Opinion Essay</div>
+        <h4>From Mombasa to Malabo: Why Kenya Must Lead the AfCFTA RECs Coordination Agenda</h4>
+        <p>An analytical essay on Kenya's strategic interest in the EAC-AfCFTA interface and the role of youth advocacy in shaping Kenya's negotiating position.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-user" aria-hidden="true"></i>Chapter Chairperson</div><div class="journal-pages">8 pages · Feb 2026</div></div>
+      </div>
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-file-text" aria-hidden="true"></i>Technical Note</div>
+        <h4>Understanding PAPSS for Kenyan Youth Traders: A Practical Guide to Pan-African Payments</h4>
+        <p>A practitioner-facing technical guide explaining how Kenya's youth SMEs can use the Pan-African Payments and Settlements System for cross-border trade finance.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-user" aria-hidden="true"></i>Finance Directorate</div><div class="journal-pages">10 pages · Dec 2025</div></div>
+      </div>
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-report" aria-hidden="true"></i>Annual Report</div>
+        <h4>ICOYACA Kenya Chapter Annual Report 2025: Youth, Trade, and Continental Integration</h4>
+        <p>A comprehensive review of the Kenya chapter's activities, member engagements, advocacy outcomes, and financials for the period January–December 2025.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-users" aria-hidden="true"></i>Kenya Chapter Leadership</div><div class="journal-pages">42 pages · Jan 2026</div></div>
+      </div>
+      <div class="journal-card">
+        <div class="journal-type"><i class="ti ti-leaf" aria-hidden="true"></i>Climate & Trade</div>
+        <h4>Green Trade Pathways: CBAM, Kenya's NDC, and Opportunities for Youth Green Exporters</h4>
+        <p>Analyses how Kenya's climate commitments under the Paris Agreement intersect with AfCFTA trade rules and what this means for youth-led green businesses.</p>
+        <div class="journal-footer"><div class="journal-author"><i class="ti ti-user" aria-hidden="true"></i>Policy Directorate</div><div class="journal-pages">16 pages · Nov 2025</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <button class="btn-gold" onclick="showPage('contact',document.querySelectorAll('.nav-links a')[6])"><i class="ti ti-send" aria-hidden="true"></i>Submit to the Journal</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EVENTS ═══ -->
+<div id="page-events" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Calendar</div>
+    <div class="section-title">Events & Programmes</div>
+    <div class="divider-gold"></div>
+    <div style="margin-bottom:32px">
+      <div class="section-label" style="margin-bottom:12px">Upcoming Events</div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-date-box"><div class="event-day">18</div><div class="event-month">Jul</div><div class="event-year">2026</div></div>
+          <div class="event-line"></div>
+          <div class="event-body"><div class="event-type">Bootcamp</div><h4>AfCFTA Export Readiness Bootcamp — Nairobi</h4><p>Three-day intensive training on HS codes, rules of origin, export documentation, and PAPSS payments for youth SMEs.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>KICC, Nairobi</div></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box"><div class="event-day">02</div><div class="event-month">Aug</div><div class="event-year">2026</div></div>
+          <div class="event-line"></div>
+          <div class="event-body"><div class="event-type">Debate</div><h4>AfCFTA Debate Series — Round 7: "Should Kenya prioritise COMESA over AfCFTA?"</h4><p>Bi-monthly debate open to university students and young professionals. Register to participate or observe.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>University of Nairobi</div></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box"><div class="event-day">14</div><div class="event-month">Aug</div><div class="event-year">2026</div></div>
+          <div class="event-line"></div>
+          <div class="event-body"><div class="event-type">Forum</div><h4>Kenya Youth in Trade Forum — Annual Convening 2026</h4><p>ICOYACA Kenya's flagship annual gathering of youth traders, policymakers, and development partners. Open to all members.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Safari Park Hotel, Nairobi</div></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box"><div class="event-day">20</div><div class="event-month">Sep</div><div class="event-year">2026</div></div>
+          <div class="event-line"></div>
+          <div class="event-body"><div class="event-type">Moot Court</div><h4>AfCFTA Moot Court Competition — Kenya National Round</h4><p>Kenya qualifying round for the continental AfCFTA Moot Court Competition. Open to law students and young legal practitioners.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Strathmore University</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-label" style="margin-bottom:12px">Past Events 2025–2026</div>
+    <div class="events-grid">
+      <div class="event-card" style="opacity:.7">
+        <div class="event-date-box"><div class="event-day">08</div><div class="event-month">Jul</div><div class="event-year">2025</div></div>
+        <div class="event-line"></div>
+        <div class="event-body"><div class="event-type">Workshop</div><h4>AfCFTA Mutual Recognition Agreements Workshop — Nairobi</h4><p>ICOYACA Kenya participated in the AfCFTA Secretariat's MRA workshop at Sarova Stanley Hotel.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Nairobi, Kenya</div></div>
+      </div>
+      <div class="event-card" style="opacity:.7">
+        <div class="event-date-box"><div class="event-day">15</div><div class="event-month">Apr</div><div class="event-year">2025</div></div>
+        <div class="event-line"></div>
+        <div class="event-body"><div class="event-type">Bootcamp</div><h4>Youth Trade Bootcamp — Mombasa Coast Chapter</h4><p>80 youth traders trained in export documentation, AfCFTA tariff schedules, and PAPSS payments at Mombasa Technical University.</p><div class="event-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Mombasa, Kenya</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div id="page-resources" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Knowledge Hub</div>
+    <div class="section-title">Resources</div>
+    <div class="divider-gold"></div>
+    <div class="resources-grid">
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div><h4>Research Reports</h4><p>Policy briefs, research papers, and technical notes produced by the ICOYACA Kenya Research Directorate.</p><span class="resource-count">8 documents</span></div>
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-book" aria-hidden="true"></i></div><h4>AfCFTA Agreement</h4><p>The full text of the Agreement Establishing the African Continental Free Trade Area and its protocols.</p><span class="resource-count">Official text</span></div>
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-chart-dots" aria-hidden="true"></i></div><h4>HS Codes Guide</h4><p>A youth-friendly guide to Harmonised System codes, tariff schedules, and rules of origin for Kenyan exporters.</p><span class="resource-count">PDF guide</span></div>
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div><h4>Event Reports</h4><p>Summaries and learning briefs from ICOYACA Kenya events, bootcamps, debates, and forums.</p><span class="resource-count">14 reports</span></div>
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-microphone" aria-hidden="true"></i></div><h4>Speeches & Statements</h4><p>Official statements, speeches, and position papers from ICOYACA Kenya chapter leadership.</p><span class="resource-count">6 statements</span></div>
+      <div class="resource-card"><div class="resource-icon"><i class="ti ti-device-tv" aria-hidden="true"></i></div><h4>Media Gallery</h4><p>Photos and video recordings from ICOYACA Kenya events, engagements, and trainings.</p><span class="resource-count">Gallery</span></div>
+    </div>
+    <div style="background:var(--gold-light);border:1px solid #e8d8a0;border-radius:var(--rx);padding:28px;display:flex;align-items:center;gap:24px">
+      <div style="font-size:40px;color:var(--gold)"><i class="ti ti-download" aria-hidden="true"></i></div>
+      <div>
+        <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--black);margin-bottom:4px">ICOYACA Kenya Annual Report 2025</div>
+        <div style="font-size:13px;color:var(--mid)">Download the full annual report covering ICOYACA Kenya's activities, advocacy outcomes, and member statistics for 2025.</div>
+      </div>
+      <button class="btn-gold" style="margin-left:auto;white-space:nowrap" onclick="showPage('contact',document.querySelectorAll('.nav-links a')[6])"><i class="ti ti-download" aria-hidden="true"></i>Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="page-contact" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">Contact ICOYACA Kenya</div>
+    <div class="divider-gold"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Whether you want to partner with us, submit a blog or journal article, attend an event, or ask about membership — we would love to hear from you.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="contact-item-icon"><i class="ti ti-mail" aria-hidden="true"></i></div><div><h5>Email</h5><p>kenya@icoyacaafrica.org</p></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div><div><h5>Location</h5><p>Nairobi, Kenya</p></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="ti ti-brand-twitter" aria-hidden="true"></i></div><div><h5>Twitter / X</h5><p>@ICOYACAKenya</p></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div><div><h5>LinkedIn</h5><p>ICOYACA Kenya Chapter</p></div></div>
+        </div>
+        <div class="social-row">
+          <div class="social-btn"><i class="ti ti-brand-facebook" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-twitter" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Send us a Message</h3>
+        <p>We typically respond within 2 working days.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" class="form-control" placeholder="Jane"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" class="form-control" placeholder="Mwangi"></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" class="form-control" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Subject</label>
+          <select class="form-control">
+            <option>General Inquiry</option>
+            <option>Membership</option>
+            <option>Partnership / Sponsorship</option>
+            <option>Blog / Journal Submission</option>
+            <option>Event Registration</option>
+            <option>Media Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea class="form-control" rows="4" placeholder="Your message here..." style="resize:vertical"></textarea></div>
+        <button class="form-submit">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ JOIN ═══ -->
+<div id="page-join" class="page">
+  <div class="section-wrap">
+    <div class="section-label">Membership</div>
+    <div class="section-title">Join ICOYACA Kenya</div>
+    <div class="divider-gold"></div>
+    <div class="membership-intro">
+      <div>
+        <p style="font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:20px">ICOYACA Kenya membership is open to all young business leaders, policy advocates, researchers, and trade practitioners committed to advancing youth inclusion in the AfCFTA and intra-African trade — regardless of your location, background, or current trade status.</p>
+        <div class="section-label" style="margin-bottom:10px">How to Join</div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><h5>Complete the Application Form</h5><p>Fill in your details and area of interest on the form to the right.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><h5>Become an ICOYACA Champion</h5><p>You will receive a confirmation email and onboarding resources from the Kenya chapter team within 5 working days.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><h5>Engage & Grow</h5><p>Access events, training, the YouthDome platform, and connect with 20,000+ youth across Africa's trade ecosystem.</p></div></div>
+        </div>
+        <div class="section-label" style="margin-bottom:12px">Member Benefits</div>
+        <div class="benefits-grid">
+          <div class="benefit-item"><div class="benefit-icon"><i class="ti ti-certificate" aria-hidden="true"></i></div><div><h5>AfCFTA Certification</h5><p>Access to AfCFTA bootcamps and export readiness training.</p></div></div>
+          <div class="benefit-item"><div class="benefit-icon"><i class="ti ti-network" aria-hidden="true"></i></div><div><h5>Continental Network</h5><p>Connect with 20,000+ youth in trade across 54 country chapters.</p></div></div>
+          <div class="benefit-item"><div class="benefit-icon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div><div><h5>Policy Voice</h5><p>Represent youth at national and continental trade policy forums.</p></div></div>
+          <div class="benefit-item"><div class="benefit-icon"><i class="ti ti-mail-forward" aria-hidden="true"></i></div><div><h5>AfCFTA Updates</h5><p>Exclusive newsletter with secretariat events, opportunities, and trade data.</p></div></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Membership Application</h3>
+        <p>All fields required. Membership is free.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" class="form-control" placeholder="James"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" class="form-control" placeholder="Otieno"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" class="form-control" placeholder="james@example.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" class="form-control" placeholder="+254 7XX XXX XXX"></div>
+        <div class="form-group"><label>County</label>
+          <select class="form-control">
+            <option>Select your county</option>
+            <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option>
+            <option>Eldoret (Uasin Gishu)</option><option>Kiambu</option><option>Machakos</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Area of Interest</label>
+          <select class="form-control">
+            <option>Select primary interest</option>
+            <option>Youth Trade & Entrepreneurship</option>
+            <option>Policy & Advocacy</option>
+            <option>Research & Analysis</option>
+            <option>Gender & Inclusion</option>
+            <option>Digital Trade & Innovation</option>
+            <option>Climate & Sustainable Trade</option>
+          </select>
+        </div>
+        <button class="form-submit"><i class="ti ti-user-check" aria-hidden="true"></i> Submit Application</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>ICOYACA Kenya</h3>
+        <div class="gold-line"></div>
+        <p>Independent Continental Youth Advisory Council on AfCFTA — Kenya Chapter. Empowering young Kenyans to lead Africa's trade future.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a onclick="showPage('home',document.querySelectorAll('.nav-links a')[0])">Home</a></li>
+          <li><a onclick="showPage('about',document.querySelectorAll('.nav-links a')[1])">About Us</a></li>
+          <li><a onclick="showPage('events',document.querySelectorAll('.nav-links a')[4])">Events</a></li>
+          <li><a onclick="showPage('join',document.querySelector('.nav-cta'))">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Content</h5>
+        <ul>
+          <li><a onclick="showPage('blog',document.querySelectorAll('.nav-links a')[2])">Blog</a></li>
+          <li><a onclick="showPage('journal',document.querySelectorAll('.nav-links a')[3])">Journal</a></li>
+          <li><a onclick="showPage('resources',document.querySelectorAll('.nav-links a')[5])">Resources</a></li>
+          <li><a onclick="showPage('contact',document.querySelectorAll('.nav-links a')[6])">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://icoyacaafrica.org" target="_blank">Continental Website</a></li>
+          <li><a href="https://www.facebook.com/AfCFTAAdvisory/" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com/ICOYACA" target="_blank">Twitter / X</a></li>
+          <li><a href="https://tz.linkedin.com/company/afcftayouthadvisorycouncil" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ICOYACA Kenya Chapter. Affiliated to <a href="https://youlead.africa" target="_blank">YouLead Africa</a>.</p>
+      <div class="kenya-badge"><i class="ti ti-map-pin" aria-hidden="true"></i>Nairobi, Kenya</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(id, linkEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  var target = document.getElementById('page-' + id);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  if(linkEl) linkEl.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
